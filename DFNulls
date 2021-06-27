@@ -1,0 +1,40 @@
+1. See the Logic of NULL Population abhishek did and see by printing Schema ki  Dataframe me aur target me colum nanes kya aate hai ? 
+2. ClassificationENrichemnt check why it did not show Prints I inserted.-- need to see but its working ask abhishek to use it 
+3. DM me how and where it insert two new columns 
+3. Think of the task which are required to be done as part of Saprk load approach. 
+4. Spark submit ke time jo properties dete hai vo sab aache se samj and learn it.
+4. get all updated DDL, SEED FIELS, script, Scala components in a single Folder
+And delete which are not needed 
+5. Share the mapping sheet with Team and take created. 
+
+
+Task: 
+1.	Remove the ExcessDistribution module and have a method in rrploadDerivatives.scala
+2.	Remove ClassificationEnrichment Module and have a method in rrploadDerivatives.scala
+3.	Collateral PRE_SRC: 
+a.	Update DDL for Collateral Pre_src and create it a PARTITION TABLE 
+b.	Update Scala logic to read the data from external table using pre_config table like other tables. So, 
+c.	update the pre_config and add one row for PRE_SRC.
+d.	Drop the Pre_src PARTITION. 
+
+4.	Collateral SRC:
+a.	UPDTE DDL and have SRC table as non-partition table. Take partition columns in DDL itself.
+b.	Remove PARTITION drop logic and use TRUNCATE to delete data from SRC table.
+
+5.	Collateral ODS:
+a.	UPDTE DDL and have ODS table as non-partition table. Take partition columns in DDL itself.
+b.	Remove PARTITION drop logic and use TRUNCATE to delete data from ODS table.
+
+6.	In pre_config , Check and correct the order and name of columns mentioned in  src_column_names of pre_config table as per target table. It has to be <source_col name+any casting + any function>  AS < target col name>  for all attributes. I think at Collateral side we should correct it rest other tables are fine.  
+
+7.	Collateral LDM: in pre_config, for some columns CASE statements been used. Check it and analyse is it possible, to get it done by Enrichment module. 
+8.	Load the data.
+9.	Validate the data load and confirm data is loaded to each target table  properly.
+10.	We will not be having any script as deliverable as we are using  same RunStress script.
+Same all above tasks are there for Trade as well except 1 and 2  because these are common for both 
+Trade side extra things;
+1.	Remove TRADE_VAR from pre_config for trade LDM and see the conc_wc function work properly or not else update the function and use Scala base concat (i.e. +) 
+
+
+•	I have prepared a Mapping sheet as per FRD. Now whenever any FRD change comes related to col name change, col addition, or col delete , we will keep it updated and handy
+•	(SRC and ODS) likewise SRC and ODS would have only single day  data at any time 
